@@ -47,19 +47,18 @@ class BlogController extends Controller
     {
         $validated = $request->validated();
 
-        $currentUserId = auth()->id();
-
         $comment = new Comment();
-        //        $comment->author()->associate(auth()->user());
-        $comment->author_id = $currentUserId ?? 1; // TODO: Remove when authentication is implemented
+        $comment->author()->associate(auth()->user());
         $comment->post()->associate($post);
         $comment->content = $validated['content'];
         $comment->save();
 
         //        You can also use this code to create a new comment by using mass assignment
+        //        $currentUserId = auth()->id();
         //        $comment = new Comment([
         //            'content' => $validated['content'],
         //            'post_id' => $post->id,
+        //            'author_id' => $currentUserId,
         //        ]);
         //        $comment->save();
 

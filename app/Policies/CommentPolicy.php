@@ -28,7 +28,7 @@ class CommentPolicy
     /**
      * Determine whether the user can create models.
      */
-    public function create(?User $user): bool
+    public function create(User $user): bool
     {
         // Reaching this code means the user is authenticated.
         // We can safely assume $user is an instance of User.
