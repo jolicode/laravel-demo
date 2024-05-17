@@ -47,13 +47,6 @@ class BlogController extends Controller
     {
         $validated = $request->validated();
 
-        //        You can also use this code to create a new comment by using mass assignment
-        //        $comment = new Comment([
-        //            'content' => $validated['content'],
-        //            'post_id' => $post->id,
-        //        ]);
-        //        $comment->save();
-
         $currentUserId = auth()->id();
 
         $comment = new Comment();
@@ -62,6 +55,13 @@ class BlogController extends Controller
         $comment->post()->associate($post);
         $comment->content = $validated['content'];
         $comment->save();
+
+        //        You can also use this code to create a new comment by using mass assignment
+        //        $comment = new Comment([
+        //            'content' => $validated['content'],
+        //            'post_id' => $post->id,
+        //        ]);
+        //        $comment->save();
 
         return redirect()->route('blog.post', ['post' => $post]);
     }

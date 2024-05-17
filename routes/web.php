@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Comment;
 use Illuminate\Support\Facades\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 
@@ -26,7 +27,8 @@ Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(f
     Route::get('/search', 'search')
         ->name('search')
     ;
-    //    Route::get('/page/{page}', 'index')->name('index_paginated');
+    // TODO: Pagination
+    // Route::get('/page/{page}', 'index')->where('page', Requirement::POSITIVE_INT)->name('index_paginated');
 
     Route::get('/posts/{post}', 'show')
         ->where('post', Requirement::ASCII_SLUG) // Thank you Symfony :p
@@ -34,6 +36,8 @@ Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(f
     ;
 
     Route::post('comment/{post}/new', 'newComment')
+        ->can('create', Comment::class)
+        ->where('post', Requirement::ASCII_SLUG)
         ->name('comment.new')
     ;
 });
