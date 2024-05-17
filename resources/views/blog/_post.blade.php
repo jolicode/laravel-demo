@@ -1,6 +1,6 @@
 <article class="post">
     <h2>
-        <a href="{{ route('blog.post', ['slug' => $post->slug]) }}">
+        <a href="{{ route('blog.post', ['post' => $post]) }}">
             {{ $post->title }}
         </a>
     </h2>

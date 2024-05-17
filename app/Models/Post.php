@@ -46,14 +46,13 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function scopeLatest(int $page = 1, ?Tag $tag = null)
+    public function scopeLatest(?Tag $tag)
     {
         return $this->where('published_at', '<=', now())
             ->when($tag, function ($query) use ($tag) {
                 return $query->whereHas('tags', fn ($query) => $query->where('id', $tag->id));
             })
             ->orderBy('published_at', 'desc')
-            ->paginate($page)
         ;
     }
 

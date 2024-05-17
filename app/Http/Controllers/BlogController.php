@@ -20,9 +20,9 @@ class BlogController extends Controller
             $tag = Tag::where('name', $request->query->get('tag'))->first();
         }
 
-        // TODO: Pagination
-        //        $latestPosts = Post::latest($page, $tag);
-        $latestPosts = Post::all();
+        // TODO: Pagination (keep tags between pages)
+        /* @phpstan-ignore-next-line */
+        $latestPosts = Post::latest($tag)->paginate(5);
 
         // Every template name also has two extensions that specify the format and
         // engine for that template.

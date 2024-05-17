@@ -3,7 +3,7 @@
         $route = Route::currentRouteName();
     @endphp
 
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <div class="container flex flex-wrap items-center justify-between mx-auto p-4">
         <a href="{{ route('homepage') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"><s>Symfony</s> Laravel Demo</span>
@@ -22,7 +22,7 @@
                 </li>
                 <li class="flex text-{{ $route == 'blog.search' ? 'blue-500' : 'white' }} md:text-{{ $route == 'blog.search' ? 'blue-500' : 'white' }} dark:text-{{ $route == 'blog.search' ? 'blue-500' : 'white' }}">
                     <i class="fa fa-search"></i>
-                    <a href="{{ route('blog.search') }}" class="block py-2 px-3 bg-blue-700 rounded md:bg-transparent md:p-0">Home</a>
+                    <a href="{{ route('blog.search') }}" class="block py-2 px-3 bg-blue-700 rounded md:bg-transparent md:p-0">Search</a>
                 </li>
 
                 @if(Auth::check())

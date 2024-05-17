@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta name="view-transition" content="same-origin" />
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('title', config('app.name', 'Laravel'))</title>
 
         <link rel="alternate" type="application/rss+xml" title="{{ 'rss.title' }}" href="{{ route('blog.rss') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -46,30 +46,30 @@
                         </div>
                     </div>
                 @show
+            </div>
 
-                @section('footer')
-                    <footer>
-                        <div class="container">
-                            <div class="row">
-                                <div id="footer-copyright" class="col-md-6">
-                                    <p>{{ now()->format('Y') }} - The Symfony Project</p>
-                                    <p>{{ 'mit_license' }}</p>
-                                </div>
-                                <div id="footer-resources" class="col-md-6">
-                                    <p>
-                                        <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/symfony" title="Symfony on X (formerly Twitter)">
-                                            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-                                        </a>
-                                        <a target="_blank" href="https://symfony.com/blog/" title="Symfony Blog">
-                                            <i class="fa-solid fa-rss" aria-hidden="true"></i>
-                                        </a>
-                                    </p>
-                                </div>
+            @section('footer')
+                <footer>
+                    <div class="container mx-auto">
+                        <div class="row">
+                            <div id="footer-copyright" class="col-md-6">
+                                <p>{{ now()->format('Y') }} - The Symfony Project</p>
+                                <p>{{ 'mit_license' }}</p>
+                            </div>
+                            <div id="footer-resources" class="col-md-6">
+                                <p>
+                                    <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/symfony" title="Symfony on X (formerly Twitter)">
+                                        <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                                    </a>
+                                    <a target="_blank" href="https://symfony.com/blog/" title="Symfony Blog">
+                                        <i class="fa-solid fa-rss" aria-hidden="true"></i>
+                                    </a>
+                                </p>
                             </div>
                         </div>
-                    </footer>
-                @show
-            </div>
+                    </div>
+                </footer>
+            @show
         <!-- Page rendered on {{ \Carbon\Carbon::now(new \DateTimeZone('UTC'))->format('F d, Y h:i:s A') }} -->
     </body>
 </html>
