@@ -1,21 +1,20 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="body_id">blog_index</x-slot>
 
-@section('body_id', 'blog_index')
-
-@section('main')
     @forelse($posts as $post)
+{{--        Using the old template inheritance here for diversity sake--}}
         @include('blog._post')
     @empty
         <div class="jumbotron">{{ 'post.no_posts_found' }}</div>
     @endforelse
 
     {{ $posts->links() }}
-@endsection
 
-@section('sidebar')
-    @parent
-{{--    TODO: Blade extension--}}
-{{--    {{ show_source_code(_self) }}--}}
-    @include('blog/_rss')
+    {{--@section('sidebar')--}}
+    {{--    @parent--}}
+    {{--    TODO: Blade extension--}}
+    {{--    {{ show_source_code(_self) }}--}}
+    {{--    @include('blog/_rss')--}}
 
-@endsection
+    {{--@endsection--}}
+</x-app-layout>

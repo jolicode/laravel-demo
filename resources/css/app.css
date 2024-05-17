@@ -263,7 +263,7 @@ header nav.navbar .nav-item {
 
 footer {
     background: var(--secondary-color);
-    margin-top: 2em;
+    margin-top: auto;
     padding-top: 2em;
     padding-bottom: 2em
 }

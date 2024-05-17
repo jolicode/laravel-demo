@@ -1,16 +1,14 @@
-@extends('layouts.app')
+<x-app-layout>
+    <x-slot name="title">Search results for: {{ $query }}</x-slot>
 
-@section('title', 'Search results for: ' . $query)
+    <x-slot name="block_id">blog_search</x-slot>
 
-@section('block_id', 'blog_search')
-
-@section('main')
     <livewire:search />
-@endsection
 
-@section('sidebar')
-    @parent
+    {{--@section('sidebar')--}}
+    {{--    @parent--}}
 
-{{--    TODO: Extensions--}}
-{{--    {{ show_source_code(_self) }}--}}
-@endsection
+    {{--    TODO: Extensions--}}
+    {{--    {{ show_source_code(_self) }}--}}
+    {{--@endsection--}}
+</x-app-layout>
