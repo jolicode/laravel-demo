@@ -20,12 +20,12 @@
 </head>
 <body class="font-sans antialiased" id="{{ $body_id ?? '' }}">
 <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-    @include('layouts.navigation')
+    @include('layouts.navigation', ['admin' => $admin ?? ''])
 
     <!-- Page Heading -->
     @if (isset($header))
         <header class="bg-white dark:bg-gray-800 shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
             </div>
         </header>
@@ -33,9 +33,10 @@
 
     <!-- Page Content -->
     <div class="container body-container mx-auto px-3 max-w-5xl my-12">
-        <div class="flex justify-center">
+        <div class="flex gap justify-center">
             <main id="main">
-{{--                {{ include('default/_flash_messages.html.twig') }}--}}
+                <x-flash-message />
+
                 {{ $slot }}
             </main>
 

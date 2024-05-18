@@ -8,7 +8,7 @@
         </div>
         @enderror
         <label for="content" class="text-sm font-medium text-gray-700">Comment</label>
-        <textarea id="content" name="content" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md"></textarea>
+        <textarea id="content" name="content" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border-gray-300 rounded-md">{{ old('content') }}</textarea>
     </div>
 
     <div>

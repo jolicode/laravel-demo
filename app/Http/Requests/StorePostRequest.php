@@ -5,8 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Gate;
 
 class StorePostRequest extends FormRequest
 {
@@ -15,7 +14,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return Gate::allows('admin');
     }
 
     /**
@@ -30,12 +29,11 @@ class StorePostRequest extends FormRequest
                 'required',
                 'string',
                 'max:255',
-                Rule::unique('posts')->where(function ($query) {
-                    return $query->where('slug', Str::slug($this->input('title'), language: app()->getLocale()));
-                }),
+                'unique:posts,slug',
             ],
             'summary' => 'required|string|max:255',
             'content' => 'required|string|min:10',
+            'published_at' => 'required|date|after:now',
         ];
     }
 
@@ -43,9 +41,11 @@ class StorePostRequest extends FormRequest
     {
         return [
             'title.unique' => 'post.slug_unique',
+            'slug.unique' => 'post.slug_unique',
             'summary.required' => 'post.blank_summary',
             'content.required' => 'post.blank_content',
             'content.min' => 'post.too_short_content',
+            'published_at.after' => 'post.invalid_date',
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Admin\BlogController as AdminController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Comment;
@@ -27,8 +28,6 @@ Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(f
     Route::get('/search', 'search')
         ->name('search')
     ;
-    // TODO: Pagination
-    // Route::get('/page/{page}', 'index')->where('page', Requirement::POSITIVE_INT)->name('index_paginated');
 
     Route::get('/posts/{post}', 'show')
         ->where('post', Requirement::ASCII_SLUG) // Thank you Symfony :p
@@ -42,19 +41,24 @@ Route::prefix('blog')->name('blog.')->controller(BlogController::class)->group(f
     ;
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::prefix('admin/post')->name('admin.')->controller(AdminController::class)->middleware('can:admin')->group(function () {
+    Route::get('/', 'index')->name('index');
+
+    Route::get('/new', 'create')->name('post_new');
+    Route::post('/store', 'store')->name('post_store');
+
+    Route::get('/{post}', 'show')->name('post_show');
+
+    Route::get('/{post}/edit', 'edit')->name('post_edit');
+    Route::patch('/{post}/update', 'update')->name('post_update');
+
+    Route::delete('/{post}/delete', 'destroy')->name('post_delete');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-
-// Route::controller(OrderController::class)->group(function () {
-//    Route::get('/orders/{id}', 'show');
-//    Route::post('/orders', 'store');
-// });
 
 require __DIR__ . '/auth.php';

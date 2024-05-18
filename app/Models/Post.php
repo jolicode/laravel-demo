@@ -22,8 +22,17 @@ use Illuminate\Support\Str;
  */
 class Post extends Model
 {
+    public $timestamps = false;
     protected $casts = [
         'published_at' => 'datetime',
+    ];
+
+    protected $fillable = [
+        'title',
+        'slug',
+        'summary',
+        'content',
+        'published_at',
     ];
 
     public function getRouteKeyName(): string
@@ -54,6 +63,11 @@ class Post extends Model
             })
             ->orderBy('published_at', 'desc')
         ;
+    }
+
+    public function scopeBySelf()
+    {
+        return $this->where('author_id', auth()->id());
     }
 
     protected static function boot()

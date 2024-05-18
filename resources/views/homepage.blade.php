@@ -28,7 +28,7 @@
                     {{ 'help.browse_admin' }}
                 </p>
                 <p>
-                    <a href="{{ route('blog.index') }}" class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-500 rounded shadow ripple hover:shadow-lg hover:bg-blue-600 focus:outline-none">
+                    <a href="{{ route('admin.index') }}" class="inline-block px-6 py-2 text-xs font-medium leading-6 text-center text-white uppercase transition bg-blue-500 rounded shadow ripple hover:shadow-lg hover:bg-blue-600 focus:outline-none">
                         <i class="fa fa-lock" aria-hidden="true"></i> {{ 'action.browse_admin' }}
                     </a>
                 </p>

@@ -2,31 +2,46 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
-                <!-- Logo -->
-                <div class="shrink-0 flex items-center">
-                    <a href="{{ route('homepage') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                    </a>
-                </div>
+            <!-- Logo -->
+            <div class="shrink-0 flex items-center">
+                <a href="{{ route('homepage') }}">
+                    <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
+                </a>
 
-                <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('blog.index')">
-                        {{ __('Blog') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('blog.search')">
-                        {{ __('Search') }}
-                    </x-nav-link>
-                </div>
+                {!! $admin !!}
             </div>
 
-            @if(Auth::check())
-                <!-- Settings Dropdown -->
-                <div class="hidden sm:flex sm:items-center sm:ms-6">
-                    <x-dropdown align="right" width="48">
+
+            <div class="flex">
+                <!-- Navigation Links -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('blog.index')" :active="request()->routeIs('blog.index')">
+                        <i class="fas fa-home"></i> {{ __('Blog') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('blog.search')" :active="request()->routeIs('blog.search')">
+                        <i class="fas fa-search"></i> {{ __('Search') }}
+                    </x-nav-link>
+                </div>
+                @if(Auth::check())
+                    @if(Route::currentRouteNamed('admin.*'))
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                                <i class="fas fa-list"></i> {{ __('Post list') }}
+                            </x-nav-link>
+                        </div>
+                    @else
+                        @can('admin')
+                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <x-nav-link :href="route('admin.index')">
+                                    {{ __('Backend') }}
+                                </x-nav-link>
+                            </div>
+                        @endcan
+                    @endif
+                        <!-- Settings Dropdown -->
+                        <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
                                 <div>{{ Auth::user()->name }}</div>
@@ -50,20 +65,20 @@
 
                                 <x-dropdown-link :href="route('logout')"
                                                  onclick="event.preventDefault();
-                                                this.closest('form').submit();">
+                                            this.closest('form').submit();">
                                     {{ __('Log Out') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>
                     </x-dropdown>
-                </div>
-            @else
-                <div class="hidden sm:flex sm:items-center sm:ms-6">
-                    <x-nav-link :href="route('login')">
-                        {{ __('Login') }}
-                    </x-nav-link>
-                </div>
-            @endif
+                @else
+                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                        <x-nav-link :href="route('login')">
+                            {{ __('Login') }}
+                        </x-nav-link>
+                    </div>
+                @endif
+            </div>
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">
@@ -80,7 +95,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('blog.index')">
+            <x-responsive-nav-link :href="route('blog.index')" :active="request()->routeIs('blog.index')">
                 {{ __('Blog') }}
             </x-responsive-nav-link>
         </div>
@@ -94,7 +109,12 @@
                 </div>
 
                 <div class="mt-3 space-y-1">
-                    <x-responsive-nav-link :href="route('profile.edit')">
+                    @can('admin')
+                        <x-responsive-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                            {{ __('Admin') }}
+                        </x-responsive-nav-link>
+                    @endcan
+                    <x-responsive-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                         {{ __('Profile') }}
                     </x-responsive-nav-link>
 

@@ -249,6 +249,10 @@ header nav.navbar .nav-item {
     margin-bottom: 2em
 }
 
+.gap {
+    gap: 2em
+}
+
 #sidebar p {
     font-size: 15px
 }
