@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
  * @property int       $id
  * @property string    $title
  * @property string    $slug
+ * @property string    $summary
  * @property string    $content
  * @property \DateTime $published_at
  * @property User      $author
@@ -68,6 +69,12 @@ class Post extends Model
     public function scopeBySelf()
     {
         return $this->where('author_id', auth()->id());
+    }
+
+    public function getTagsListAttribute(): string
+    {
+        /* @phpstan-ignore-next-line */
+        return $this->tags->implode('name', ', ');
     }
 
     protected static function boot()

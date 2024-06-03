@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helper\TagHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
-use App\Models\Tag;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
 class BlogController extends Controller
@@ -46,10 +46,7 @@ class BlogController extends Controller
 
         // Handle the tags
         $tags = explode(',', $request->input('tags'));
-        foreach ($tags as $tagName) {
-            $tag = Tag::firstOrCreate(['name' => trim($tagName)]);
-            $post->tags()->attach($tag->id);
-        }
+        TagHelper::handleTags($post, $tags);
 
         session()->flash('success', 'Post was created!');
 
@@ -61,6 +58,9 @@ class BlogController extends Controller
      */
     public function show(Post $post)
     {
+        Gate::authorize('viewAdmin', $post);
+
+        return view('admin.blog.show', compact('post'));
     }
 
     /**
@@ -68,13 +68,27 @@ class BlogController extends Controller
      */
     public function edit(Post $post)
     {
+        Gate::authorize('update', $post);
+
+        return view('admin.blog.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
+    public function update(StorePostRequest $request, Post $post)
     {
+        Gate::authorize('update', $post);
+
+        $post->update($request->validated());
+
+        // Handle the tags
+        $tags = explode(',', $request->input('tags'));
+        TagHelper::handleTags($post, $tags);
+
+        session()->flash('success', 'Post was updated!');
+
+        return redirect()->route('admin.post_edit', $post);
     }
 
     /**
@@ -82,5 +96,12 @@ class BlogController extends Controller
      */
     public function destroy(Post $post)
     {
+        Gate::authorize('delete', $post);
+
+        $post->delete();
+
+        session()->flash('success', 'Post was deleted!');
+
+        return redirect()->route('admin.index');
     }
 }

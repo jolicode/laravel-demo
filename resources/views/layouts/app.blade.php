@@ -18,63 +18,65 @@
     @section('stylesheets')@endsection
     @section('javascripts')@endsection
 </head>
-<body class="font-sans antialiased" id="{{ $body_id ?? '' }}">
-<div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-    @include('layouts.navigation', ['admin' => $admin ?? ''])
+<body class="font-sans antialiased flex flex-col min-h-screen" id="{{ $body_id ?? '' }}">
+    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        @include('layouts.navigation', ['admin' => $admin ?? ''])
 
-    <!-- Page Heading -->
-    @if (isset($header))
-        <header class="bg-white dark:bg-gray-800 shadow">
-            <div class="max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
-                {{ $header }}
+        <!-- Page Heading -->
+        @if (isset($header))
+            <header class="bg-white dark:bg-gray-800 shadow">
+                <div class="max-w-7xl mx-auto py-2 px-4 sm:px-6 lg:px-8">
+                    {{ $header }}
+                </div>
+            </header>
+        @endif
+
+        <!-- Page Content -->
+        <div class="container body-container mx-auto px-3 max-w-5xl my-12">
+            <div class="flex gap justify-center">
+                <main id="main" class="w-full">
+                    <x-flash-message />
+
+                    {{ $slot }}
+                </main>
+
+                <aside id="sidebar">
+                    @if(isset($sidebar))
+                        {{ $sidebar }}
+                    @else
+                        <x-sidebar />
+                    @endif
+                </aside>
             </div>
-        </header>
-    @endif
-
-    <!-- Page Content -->
-    <div class="container body-container mx-auto px-3 max-w-5xl my-12">
-        <div class="flex gap justify-center">
-            <main id="main">
-                <x-flash-message />
-
-                {{ $slot }}
-            </main>
-
-            <aside id="sidebar">
-                @if(isset($sidebar))
-                    {{ $sidebar }}
-                @else
-                    <x-sidebar />
-                @endif
-            </aside>
         </div>
-    </div>
 
-    @if(isset($footer))
-        {{ $footer }}
-    @else
-        <footer class="bg-white dark:bg-gray-800 shadow">
-            <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <div class="flex justify-between">
-                    <div id="footer-copyright" class="col-md-6">
-                        <p>{{ now()->format('Y') }} - The Symfony Project</p>
-                        <p>{{ 'mit_license' }}</p>
-                    </div>
-                    <div id="footer-resources" class="col-md-6">
-                        <p>
-                            <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/symfony"
-                               title="Symfony on X (formerly Twitter)">
-                                <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-                            </a>
-                            <a target="_blank" href="https://symfony.com/blog/" title="Symfony Blog">
-                                <i class="fa-solid fa-rss" aria-hidden="true"></i>
-                            </a>
-                        </p>
+        @if(isset($footer))
+            {{ $footer }}
+        @else
+            <footer class="bg-white dark:bg-gray-800 shadow f">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <div class="flex justify-between">
+                        <div id="footer-copyright" class="col-md-6">
+                            <p>{{ now()->format('Y') }} - The Symfony Project</p>
+                            <p>{{ 'mit_license' }}</p>
+                        </div>
+                        <div id="footer-resources" class="col-md-6">
+                            <p>
+                                <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/symfony"
+                                   title="Symfony on X (formerly Twitter)">
+                                    <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                                </a>
+                                <a target="_blank" href="https://symfony.com/blog/" title="Symfony Blog">
+                                    <i class="fa-solid fa-rss" aria-hidden="true"></i>
+                                </a>
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
-    @endif
-</div>
+            </footer>
+        @endif
+    </div>
+
+    @livewireScripts
 </body>
 </html>
