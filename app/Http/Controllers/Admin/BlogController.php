@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Admin;
 
-use App\Helper\TagHelper;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
+use App\Utils\TagHelper;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 

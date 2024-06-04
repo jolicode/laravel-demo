@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Helper;
+namespace App\Utils;
 
 use App\Models\Post;
 use App\Models\Tag;
