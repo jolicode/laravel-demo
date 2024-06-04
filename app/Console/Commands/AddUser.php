@@ -69,15 +69,21 @@ class AddUser extends Command
      */
     public function handle(): int
     {
-        $this->info('Add User Command Interactive Wizard');
-        $this->comment('
+        if (null === $this->argument('username')
+            || null === $this->argument('password')
+            || null === $this->argument('email')
+            || null === $this->argument('full-name')
+        ) {
+            $this->info('Add User Command Interactive Wizard');
+            $this->comment('
 If you prefer to not use this interactive wizard, provide the arguments required by this command as follows:
 
 $ php bin/console app:add-user username password email@example.com'
-        );
+            );
 
-        $this->newLine();
-        $this->line('Now we\'ll ask you for the value of all the missing command arguments. You can correct a previous field with CTRL+U.');
+            $this->newLine();
+            $this->line('Now we\'ll ask you for the value of all the missing command arguments. You can correct a previous field with CTRL+U.');
+        }
 
         $form = form();
 
