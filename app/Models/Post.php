@@ -77,7 +77,7 @@ class Post extends Model
         return $this->tags->implode('name', ', ');
     }
 
-    protected static function boot()
+    protected static function boot(): void
     {
         parent::boot();
 
