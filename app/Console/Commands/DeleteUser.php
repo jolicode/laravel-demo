@@ -17,7 +17,7 @@ class DeleteUser extends Command
      *
      * @var string
      */
-    protected $signature = 'app:delete-user {username?}';
+    protected $signature = 'app:delete-user {username? : The username of the user to delete}';
 
     /**
      * The console command description.

@@ -51,4 +51,9 @@ class User extends Authenticatable
             'roles' => AsEnumCollection::of(Role::class),
         ];
     }
+
+    public function isAdmin(): bool
+    {
+        return $this->roles->contains(Role::ADMIN);
+    }
 }
