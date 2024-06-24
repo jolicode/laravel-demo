@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
-use App\Mail\UserList;
+use App\Mail\UserListMail;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Mail;
@@ -81,7 +81,7 @@ class ListUsers extends Command
 
         if ($sendTo) {
             $this->info("Sending the user list to: {$sendTo}");
-            Mail::to($sendTo)->send(new UserList($users));
+            Mail::to($sendTo)->send(new UserListMail($users));
         }
 
         return 0;

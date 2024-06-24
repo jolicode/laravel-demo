@@ -4,14 +4,13 @@ declare(strict_types=1);
 
 namespace App\Mail;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class UserList extends Mailable
+class CommentCreatedMail extends Mailable
 {
     use Queueable;
     use SerializesModels;
@@ -20,7 +19,8 @@ class UserList extends Mailable
      * Create a new message instance.
      */
     public function __construct(
-        public array $arrayUsers,
+        public string $postTitle,
+        public string $linkToPost
     ) {
     }
 
@@ -30,8 +30,7 @@ class UserList extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: 'test@example.org',
-            subject: 'User List',
+            subject: 'Comment Created',
         );
     }
 
@@ -40,12 +39,8 @@ class UserList extends Mailable
      */
     public function content(): Content
     {
-        // Not the cleanest, but this mail won't be used anywhere else in the demo
-        $users = array_map(fn (array $user) => User::find($user[0]), $this->arrayUsers);
-
         return new Content(
-            view: 'mails.user-list',
-            with: ['users' => $users],
+            view: 'mail.comment-created',
         );
     }
 

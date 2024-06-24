@@ -10,17 +10,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
 
-/**
- * @property int       $id
- * @property string    $title
- * @property string    $slug
- * @property string    $summary
- * @property string    $content
- * @property \DateTime $published_at
- * @property User      $author
- * @property Tag[]     $tags
- * @property Comment[] $comments
- */
 class Post extends Model
 {
     public $timestamps = false;

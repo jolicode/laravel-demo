@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers;
 
+use App\Events\CommentCreatedEvent;
 use App\Http\Requests\StoreCommentRequest;
 use App\Models\Comment;
 use App\Models\Post;
@@ -52,6 +53,8 @@ class BlogController extends Controller
         $comment->post()->associate($post);
         $comment->content = $validated['content'];
         $comment->save();
+
+        event(new CommentCreatedEvent($comment));
 
         //        You can also use this code to create a new comment by using mass assignment
         //        $currentUserId = auth()->id();
