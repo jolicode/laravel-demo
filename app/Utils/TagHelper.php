@@ -13,6 +13,10 @@ class TagHelper
     {
         $tagIds = [];
         foreach ($tags as $tag) {
+            if (empty($tag)) {
+                continue;
+            }
+
             $tag = Tag::firstOrCreate(['name' => $tag]);
             $tagIds[] = $tag->id;
         }

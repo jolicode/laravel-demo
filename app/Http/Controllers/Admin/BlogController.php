@@ -45,7 +45,7 @@ class BlogController extends Controller
         $post->save();
 
         // Handle the tags
-        $tags = explode(',', $request->input('tags'));
+        $tags = explode(',', $request->input('tags') ?? '');
         TagHelper::handleTags($post, $tags);
 
         session()->flash('success', 'Post was created!');
@@ -83,7 +83,7 @@ class BlogController extends Controller
         $post->update($request->validated());
 
         // Handle the tags
-        $tags = explode(',', $request->input('tags'));
+        $tags = explode(',', $request->input('tags') ?? '');
         TagHelper::handleTags($post, $tags);
 
         session()->flash('success', 'Post was updated!');

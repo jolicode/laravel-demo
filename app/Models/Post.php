@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -52,7 +53,7 @@ class Post extends Model
         });
     }
 
-    public function scopeBySelf($query): self
+    public function scopeBySelf($query): Builder
     {
         return $query->where('author_id', auth()->id());
     }

@@ -33,7 +33,7 @@ class StorePostRequest extends FormRequest
             ],
             'summary' => 'required|string|max:255',
             'content' => 'required|string|min:10',
-            'published_at' => 'required|date|after:now',
+            'published_at' => 'required|date',
         ];
     }
 
