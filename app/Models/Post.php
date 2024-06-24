@@ -45,19 +45,16 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function scopeLatest(?Tag $tag)
+    public function scopeWithTag($query, $tagId)
     {
-        return $this->where('published_at', '<=', now())
-            ->when($tag, function ($query) use ($tag) {
-                return $query->whereHas('tags', fn ($query) => $query->where('id', $tag->id));
-            })
-            ->orderBy('published_at', 'desc')
-        ;
+        return $query->whereHas('tags', function ($query) use ($tagId) {
+            $query->where('tags.id', $tagId);
+        });
     }
 
-    public function scopeBySelf()
+    public function scopeBySelf($query): self
     {
-        return $this->where('author_id', auth()->id());
+        return $query->where('author_id', auth()->id());
     }
 
     public function getTagsListAttribute(): string

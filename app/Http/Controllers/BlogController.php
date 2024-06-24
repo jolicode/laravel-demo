@@ -19,16 +19,14 @@ class BlogController extends Controller
 
         if ($request->query->has('tag')) {
             $tag = Tag::where('name', $request->query->get('tag'))->first();
+            $latestPosts = Post::withTag($tag->id)->get();
+        } else {
+            $latestPosts = Post::latest()->paginate(5);
         }
-
-        // TODO: Pagination (keep tags between pages)
-        /* @phpstan-ignore-next-line */
-        $latestPosts = Post::latest($tag)->paginate(5);
 
         // Every template name also has two extensions that specify the format and
         // engine for that template.
         return view('blog.index_' . $_format, [
-            //            'paginator' => $latestPosts,
             'posts' => $latestPosts,
             'tagName' => $tag?->name,
         ]);

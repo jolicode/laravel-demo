@@ -8,7 +8,9 @@
         <div class="jumbotron">{{ 'post.no_posts_found' }}</div>
     @endforelse
 
-    {{ $posts->links() }}
+    @if(method_exists($posts, 'links') && $posts->links())
+        {{ $posts->links() }}
+    @endif
 
     {{--@section('sidebar')--}}
     {{--    @parent--}}
