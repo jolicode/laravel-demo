@@ -19,7 +19,7 @@
         </div>
 
         <div class="mb-4">
-            <x-delete-post :route="'admin.post_delete'" :model="$post" />
+            <livewire:delete :post-id="$post->id"/>
         </div>
     </x-slot>
 </x-admin-layout>
