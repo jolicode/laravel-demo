@@ -38,6 +38,11 @@ class User extends Authenticatable
         'remember_token',
     ];
 
+    public function isAdmin(): bool
+    {
+        return $this->roles->contains(Role::ADMIN);
+    }
+
     /**
      * Get the attributes that should be cast.
      *
@@ -50,10 +55,5 @@ class User extends Authenticatable
             'password' => 'hashed',
             'roles' => AsEnumCollection::of(Role::class),
         ];
-    }
-
-    public function isAdmin(): bool
-    {
-        return $this->roles->contains(Role::ADMIN);
     }
 }

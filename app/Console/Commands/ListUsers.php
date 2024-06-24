@@ -4,9 +4,10 @@ declare(strict_types=1);
 
 namespace App\Console\Commands;
 
+use App\Mail\UserList;
 use App\Models\User;
 use Illuminate\Console\Command;
-use Symfony\Component\Mime\Email;
+use Illuminate\Support\Facades\Mail;
 
 class ListUsers extends Command
 {
@@ -48,7 +49,11 @@ class ListUsers extends Command
     public function handle(): int
     {
         /** @var int|null $maxResults */
-        $maxResults = $this->argument('max-results');
+        $maxResults = filter_var($this->argument('max-results'), \FILTER_VALIDATE_INT);
+
+        if ($maxResults === false) {
+            $maxResults = 50;
+        }
 
         $allUsers = User::query()
             ->orderBy('id', 'desc')
@@ -74,27 +79,11 @@ class ListUsers extends Command
 
         $sendTo = $this->argument('send-to');
 
-        //        if ($sendTo) {
-        //            $this->info("Sending the user list to: {$sendTo}");
-        //            $usersAsString = implode("\n", array_map(fn ($user) => implode(', ', $user), $users));
-        //            $this->sendReport($usersAsString, $sendTo);
-        //        }
+        if ($sendTo) {
+            $this->info("Sending the user list to: {$sendTo}");
+            Mail::to($sendTo)->send(new UserList($users));
+        }
 
         return 0;
     }
-
-    //    /**
-    //     * Sends the given $contents to the $recipient email address.
-    //     */
-    //    private function sendReport(string $contents, string $recipient): void
-    //    {
-    //        $email = (new Email())
-    //            ->from($this->emailSender)
-    //            ->to($recipient)
-    //            ->subject(sprintf('app:list-users report (%s)', date('Y-m-d H:i:s')))
-    //            ->text($contents)
-    //        ;
-    //
-    //        $this->mailer->send($email);
-    //    }
 }
