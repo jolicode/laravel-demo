@@ -2,9 +2,7 @@
     <x-slot name="header">
         <h1 class="font-semibold text-xl text-gray-900 dark:text-white">{!! __('messages.title.homepage') !!}</h1>
 
-        {{--        TODO: Macro ici--}}
-        {{--        {% from 'default/_language_selector.html.twig' import render_language_selector %}--}}
-        {{--        {{ render_language_selector(true) }}--}}
+        <livewire:language-selector />
     </x-slot>
 
     <div class="flex mx-auto">

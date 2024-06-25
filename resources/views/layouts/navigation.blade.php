@@ -12,22 +12,23 @@
             </div>
 
 
-            <div class="flex">
+            <div class="flex items-center">
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('blog.index')" :active="request()->routeIs('blog.index')">
+                    <x-nav-link :href="route('blog.index')" :active="request()->routeIs('blog.index')" wire:navigate>
                         <i class="fas fa-home"></i> {{ __('messages.nav.blog') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('blog.search')" :active="request()->routeIs('blog.search')">
+                    <x-nav-link :href="route('blog.search')" :active="request()->routeIs('blog.search')" wire:navigate>
                         <i class="fas fa-search"></i> {{ __('messages.nav.search') }}
                     </x-nav-link>
                 </div>
+                <livewire:language-selector />
                 @if(Auth::check())
                     @if(Route::currentRouteNamed('admin.*'))
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                            <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                            <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')" wire:navigate>
                                 <i class="fas fa-list"></i> {{ __('messages.nav.post_list') }}
                             </x-nav-link>
                         </div>

@@ -21,11 +21,11 @@
                     </td>
                     <td class="px-6 py-4 text-right">
                         <div class="flex">
-                            <a href="{{ route('admin.post_show', ['post' => $post]) }}" class="btn btn-sm btn-secondary">
+                            <a href="{{ route('admin.post_show', ['post' => $post]) }}" class="btn btn-sm btn-secondary" wire:navigate>
                                 <i class="fa fa-eye" aria-hidden="true"></i> {{ __('action.show') }}
                             </a>
 
-                            <a href="{{ route('admin.post_edit', ['post' => $post]) }}" class="btn btn-sm btn-primary">
+                            <a href="{{ route('admin.post_edit', ['post' => $post]) }}" class="btn btn-sm btn-primary" wire:navigate>
                                 <i class="fa fa-edit" aria-hidden="true"></i> {{ __('action.edit') }}
                             </a>
                         </div>
