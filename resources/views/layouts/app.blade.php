@@ -57,16 +57,16 @@
                 <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                     <div class="flex justify-between">
                         <div id="footer-copyright" class="col-md-6">
-                            <p>{{ now()->format('Y') }} - The Symfony Project</p>
-                            <p>{{ 'mit_license' }}</p>
+                            <p>{{ now()->format('Y') }} - Jolicode tries Laravel</p>
+                            <p>{{ __('messages.mit_license') }}</p>
                         </div>
                         <div id="footer-resources" class="col-md-6">
                             <p>
-                                <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/symfony"
-                                   title="Symfony on X (formerly Twitter)">
+                                <a rel="noopener noreferrer" target="_blank" href="https://twitter.com/jolicode"
+                                   title="Jolicode on X (formerly Twitter)">
                                     <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
                                 </a>
-                                <a target="_blank" href="https://symfony.com/blog/" title="Symfony Blog">
+                                <a target="_blank" href="https://jolicode.com/blog/" title="Jolicode Blog">
                                     <i class="fa-solid fa-rss" aria-hidden="true"></i>
                                 </a>
                             </p>

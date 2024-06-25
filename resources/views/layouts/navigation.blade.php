@@ -16,26 +16,26 @@
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('blog.index')" :active="request()->routeIs('blog.index')">
-                        <i class="fas fa-home"></i> {{ __('Blog') }}
+                        <i class="fas fa-home"></i> {{ __('messages.nav.blog') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('blog.search')" :active="request()->routeIs('blog.search')">
-                        <i class="fas fa-search"></i> {{ __('Search') }}
+                        <i class="fas fa-search"></i> {{ __('messages.nav.search') }}
                     </x-nav-link>
                 </div>
                 @if(Auth::check())
                     @if(Route::currentRouteNamed('admin.*'))
                         <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                             <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
-                                <i class="fas fa-list"></i> {{ __('Post list') }}
+                                <i class="fas fa-list"></i> {{ __('messages.nav.post_list') }}
                             </x-nav-link>
                         </div>
                     @else
                         @can('admin')
                             <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <x-nav-link :href="route('admin.index')">
-                                    {{ __('Backend') }}
+                                    {{ __('messages.nav.backend') }}
                                 </x-nav-link>
                             </div>
                         @endcan
@@ -56,7 +56,7 @@
 
                         <x-slot name="content">
                             <x-dropdown-link :href="route('profile.edit')">
-                                {{ __('Profile') }}
+                                {{ __('messages.nav.profile') }}
                             </x-dropdown-link>
 
                             <!-- Authentication -->
@@ -66,7 +66,7 @@
                                 <x-dropdown-link :href="route('logout')"
                                                  onclick="event.preventDefault();
                                             this.closest('form').submit();">
-                                    {{ __('Log Out') }}
+                                    {{ __('messages.nav.log_out') }}
                                 </x-dropdown-link>
                             </form>
                         </x-slot>
@@ -74,7 +74,7 @@
                 @else
                     <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                         <x-nav-link :href="route('login')">
-                            {{ __('Login') }}
+                            {{ __('messages.nav.login') }}
                         </x-nav-link>
                     </div>
                 @endif
