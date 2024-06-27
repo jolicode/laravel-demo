@@ -71,7 +71,7 @@ return [
         'comment_deleted' => 'Commentaire supprimé avec succès!',
     ],
     'help' => [
-        'app_description' => 'Ceci est une application de démonstration créée avec Symfony.',
+        'app_description' => 'Ceci est une application de démonstration créée avec Laravel.',
         'show_code' => 'Cliquez sur le bouton ci-dessous pour voir le code source du <strong>contrôleur</strong> et du <strong>modèle Twig</strong> utilisés pour rendre cette page.',
         'browse_app' => 'Parcourez <strong>l\'application</strong> pour voir les articles et les commentaires.',
         'browse_admin' => 'Parcourez <strong>le back-office</strong> pour gérer les articles et les commentaires.',
@@ -80,7 +80,7 @@ return [
         'role_admin' => 'administrateur',
         'reload_fixtures' => 'Si vous ne trouvez pas d\'utilisateur avec lequel vous connecter, rechargez les fixtures en exécutant cette commande:',
         'add_user' => 'Créez un nouvel utilisateur en exécutant cette commande:',
-        'more_information' => 'Pour plus d\'informations, consultez la documentation officielle de Symfony.',
+        'more_information' => 'Pour plus d\'informations, consultez la documentation officielle de Laravel.',
         'post_summary' => 'Résumé de l\'article',
         'post_publication' => 'Publier l\'article',
         'post_content' => 'Contenu de l\'article',
@@ -93,7 +93,7 @@ return [
         'comment_deleted' => 'Supprimez les commentaires qui ne respectent pas notre code de conduite.',
     ],
     'rss' => [
-        'title' => 'Blog Symfony Demo',
+        'title' => 'Blog Laravel Demo',
         'description' => 'Les articles les plus récents publiés sur le blog Laravel Demo',
     ],
     'paginator' => [
@@ -109,5 +109,6 @@ return [
         'blog' => 'Blog',
         'backend' => 'Back-office',
         'profile' => 'Profile',
+        'post_list' => 'Liste des articles',
     ],
 ];

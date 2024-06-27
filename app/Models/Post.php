@@ -46,7 +46,7 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function scopeWithTag($query, $tagId)
+    public function scopeWithTag($query, $tagId): Builder
     {
         return $query->whereHas('tags', function ($query) use ($tagId) {
             $query->where('tags.id', $tagId);
@@ -58,9 +58,24 @@ class Post extends Model
         return $query->where('author_id', auth()->id());
     }
 
+    public function scopePublished($query): Builder
+    {
+        return $query->where('published_at', '<=', now());
+    }
+
+    public function attachTagsToPost(array $tags): void
+    {
+        $tagIds = [];
+        foreach ($tags as $tagName) {
+            $tag = Tag::firstOrCreate(['name' => (string) $tagName]);
+            $tagIds[] = $tag->id;
+        }
+
+        self::tags()->sync($tagIds);
+    }
+
     public function getTagsListAttribute(): string
     {
-        /* @phpstan-ignore-next-line */
         return $this->tags->implode('name', ', ');
     }
 

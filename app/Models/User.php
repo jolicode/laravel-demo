@@ -40,6 +40,7 @@ class User extends Authenticatable
 
     public function isAdmin(): bool
     {
+        /* @phpstan-ignore-next-line */
         return $this->roles->contains(Role::ADMIN);
     }
 

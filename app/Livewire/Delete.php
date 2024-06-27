@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Livewire;
 
 use App\Models\Post;
-use Illuminate\Routing\Redirector;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class Delete extends Component
@@ -17,14 +18,14 @@ class Delete extends Component
         $this->postId = $postId;
     }
 
-    public function delete(): Redirector
+    public function delete(): RedirectResponse
     {
         Post::findOrFail($this->postId)->delete();
 
         return redirect()->route('admin.index');
     }
 
-    public function render(): \Illuminate\View\View
+    public function render(): View
     {
         return view('livewire.delete');
     }

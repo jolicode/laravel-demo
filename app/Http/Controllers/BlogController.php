@@ -19,9 +19,9 @@ class BlogController extends Controller
 
         if ($request->query->has('tag')) {
             $tag = Tag::where('name', $request->query->get('tag'))->first();
-            $latestPosts = Post::withTag($tag->id)->get();
+            $latestPosts = Post::latest('published_at')->published()->withTag($tag->id)->with(['tags', 'author'])->get();
         } else {
-            $latestPosts = Post::latest()->paginate(5);
+            $latestPosts = Post::latest('published_at')->published()->with(['tags', 'author'])->paginate(5);
         }
 
         // Every template name also has two extensions that specify the format and
@@ -54,7 +54,8 @@ class BlogController extends Controller
 
         event(new CommentCreatedEvent($comment));
 
-        //        You can also use this code to create a new comment by using mass assignment
+        // You can also use this code to create a new comment by using mass assignment
+        // It is actually a good practice to use mass assignment to create a new model instance
         //        $currentUserId = auth()->id();
         //        $comment = new Comment([
         //            'content' => $validated['content'],

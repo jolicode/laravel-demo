@@ -92,7 +92,7 @@ return [
         'change_password' => 'After changing your password, you will be logged out of the application.',
     ],
     'rss' => [
-        'title' => 'Symfony Demo blog',
+        'title' => 'Laravel Demo blog',
         'description' => 'Most recent posts published on the Laravel Demo blog',
     ],
     'paginator' => [
@@ -108,6 +108,7 @@ return [
         'blog' => 'Blog',
         'backend' => 'Backend',
         'profile' => 'Profile',
+        'post_list' => 'Post list',
     ],
 ];
 

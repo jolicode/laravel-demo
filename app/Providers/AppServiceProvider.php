@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Builder::macro('search', function (string $column, string $value) {
-            /* @phpstan-ignore-next-line */
+            /* @phpstan-ignore-next-line */ // $this is an instance of Builder, not AppServiceProvider like Phpstan thinks
             return $value ? $this->where($column, 'like', "%{$value}%") : $this;
         });
 

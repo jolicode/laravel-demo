@@ -8,15 +8,7 @@
         <div class="jumbotron">{{ 'post.no_posts_found' }}</div>
     @endforelse
 
-    @if(method_exists($posts, 'links') && $posts->links())
+    @if(method_exists($posts, 'links') && $posts->links()) {{-- Check if paginator is active --}}
         {{ $posts->links() }}
     @endif
-
-    {{--@section('sidebar')--}}
-    {{--    @parent--}}
-    {{--    TODO: Blade extension--}}
-    {{--    {{ show_source_code(_self) }}--}}
-    {{--    @include('blog/_rss')--}}
-
-    {{--@endsection--}}
 </x-app-layout>

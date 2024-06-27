@@ -7,7 +7,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
-use App\Utils\TagHelper;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
 
@@ -19,7 +18,7 @@ class BlogController extends Controller
     public function index()
     {
         return view('admin.blog.index', [
-            'posts' => Post::bySelf()->paginate(5),
+            'posts' => Post::latest('published_at')->bySelf()->paginate(5),
         ]);
     }
 
@@ -36,7 +35,7 @@ class BlogController extends Controller
      */
     public function store(StorePostRequest $request)
     {
-        // Validate the slug
+        // Add & Validate the slug
         $request->merge(['slug' => Str::slug($request->title)]);
         $request->validate(['slug' => 'unique:posts,slug']);
 
@@ -45,8 +44,8 @@ class BlogController extends Controller
         $post->save();
 
         // Handle the tags
-        $tags = explode(',', $request->input('tags') ?? '');
-        TagHelper::handleTags($post, $tags);
+        $tags = explode(',', $request->tags ?? '');
+        $post->attachTagsToPost($tags);
 
         session()->flash('success', 'Post was created!');
 
@@ -83,8 +82,8 @@ class BlogController extends Controller
         $post->update($request->validated());
 
         // Handle the tags
-        $tags = explode(',', $request->input('tags') ?? '');
-        TagHelper::handleTags($post, $tags);
+        $tags = explode(',', $request->tags ?? '');
+        $post->attachTagsToPost($tags);
 
         session()->flash('success', 'Post was updated!');
 

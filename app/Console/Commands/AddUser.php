@@ -152,7 +152,7 @@ $ php bin/console app:add-user username password email@example.com'
 
         $responses = $form->submit();
 
-        $stopwatch = new Stopwatch(); // Merci Symfony
+        $stopwatch = new Stopwatch(); // Thank you Symfony
         $stopwatch->start('add-user-command');
 
         $this->newLine();

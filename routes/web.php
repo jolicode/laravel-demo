@@ -42,14 +42,14 @@ Route::prefix('{_locale?}')
                 ->name('post')
             ;
 
-            Route::post('comment/{post}/new', 'newComment')
+            Route::post('comments/{post}/new', 'newComment')
                 ->can('create', Comment::class)
                 ->where('post', Requirement::ASCII_SLUG)
                 ->name('comment.new')
             ;
         });
 
-        Route::prefix('admin/post')->name('admin.')->controller(AdminController::class)->middleware('can:admin')->group(function () {
+        Route::prefix('admin/posts')->name('admin.')->controller(AdminController::class)->middleware('can:admin')->group(function () {
             Route::get('/', 'index')->name('index');
 
             Route::get('/new', 'create')->name('post_new');
