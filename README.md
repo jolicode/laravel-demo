@@ -46,6 +46,13 @@ php artisan ide-helper:models
 php artisan ide-helper:generate
 ```
 
+### CS & QA
+
+```bash
+./vendor/bin/pint # Version de cs-fixer propre à Laravel
+./vendor/bin/phpstan  
+```
+
 ### Mails
 
 Je ne me suis pas embêté à mettre en place un environnement de développement pour les mails personnellement.
