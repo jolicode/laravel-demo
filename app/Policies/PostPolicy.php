@@ -32,7 +32,7 @@ class PostPolicy
      */
     public function viewAdmin(User $user, Post $post): Response
     {
-        return $user->id === $post->author_id
+        return $post->author()->is($user)
             ? Response::allow()
             : Response::deny('Posts can only be shown to their authors.');
     }
@@ -50,7 +50,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post): bool
     {
-        return Gate::allows('admin') && $user->id === $post->author_id;
+        return Gate::allows('admin') && $post->author->is($user);
     }
 
     /**
@@ -58,22 +58,6 @@ class PostPolicy
      */
     public function delete(User $user, Post $post): bool
     {
-        return Gate::allows('admin') && $user->id === $post->author_id;
+        return Gate::allows('admin') && $post->author->is($user);
     }
-
-    //    /**
-    //     * Determine whether the user can restore the model.
-    //     */
-    //    public function restore(User $user, Post $post): bool
-    //    {
-    //        //
-    //    }
-    //
-    //    /**
-    //     * Determine whether the user can permanently delete the model.
-    //     */
-    //    public function forceDelete(User $user, Post $post): bool
-    //    {
-    //        //
-    //    }
 }

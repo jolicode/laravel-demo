@@ -1,6 +1,6 @@
 @props(['content'])
 
-<div>
+<div class="m-5">
     {{--                {{ render_esi(controller('Symfony\\Bundle\\FrameworkBundle\\Controller\\TemplateController::templateAction', {--}}
     {{--                'template': 'blog/about.html.twig',--}}
     {{--                'sharedAge': 600,--}}

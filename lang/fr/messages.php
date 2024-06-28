@@ -56,6 +56,7 @@ return [
         'published_at' => 'Publié le',
         'published' => 'Publié',
         'not_published' => 'Non publié',
+        'actions' => 'Actions',
     ],
     'message' => [
         'saved' => 'Enregistré avec succès!',

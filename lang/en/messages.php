@@ -55,6 +55,7 @@ return [
         'delete_post' => 'Delete post',
         'cancel' => 'Cancel',
         'create_post' => 'Create post',
+        'actions' => 'Actions',
     ],
     'message' => [
         'post_created_successfully' => 'Post created successfully!',

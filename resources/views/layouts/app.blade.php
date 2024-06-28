@@ -32,7 +32,7 @@
         @endif
 
         <!-- Page Content -->
-        <div class="container body-container mx-auto px-3 max-w-5xl my-12">
+        <div class="container body-container mx-auto px-3 @if(isset($body_id) && $body_id != 'blog_admin') max-w-5xl @endif my-12">
             <div class="flex gap justify-center">
                 <main id="main" class="w-full">
                     <x-flash-message />
