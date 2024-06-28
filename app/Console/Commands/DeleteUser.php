@@ -47,7 +47,7 @@ class DeleteUser extends Command
      */
     public function handle()
     {
-        if (!$this->argument('username')) {
+        if (! $this->argument('username')) {
             $this->info('Delete User Command Interactive Wizard');
             $this->comment('If you prefer to not use this interactive wizard, provide the arguments required by this command as follows:');
             $this->newLine();
@@ -60,7 +60,7 @@ class DeleteUser extends Command
 
         $user = User::where('username', $username)->first();
 
-        if (!$user) {
+        if (! $user) {
             $this->error("User with username: {$username} does not exist.");
 
             return 1;

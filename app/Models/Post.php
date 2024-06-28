@@ -14,6 +14,7 @@ use Illuminate\Support\Str;
 class Post extends Model
 {
     public $timestamps = false;
+
     protected $casts = [
         'published_at' => 'datetime',
     ];

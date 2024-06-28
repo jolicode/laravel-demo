@@ -25,28 +25,23 @@ Route::prefix('{_locale?}')
             Route::get('/', 'index')
                 ->defaults('page', 1)
                 ->defaults('_format', 'html')
-                ->name('index')
-            ;
+                ->name('index');
             Route::get('/rss.xml', 'index')
                 ->defaults('page', 1)
                 ->defaults('_format', 'xml')
-                ->name('rss')
-            ;
+                ->name('rss');
 
             Route::get('/search', 'search')
-                ->name('search')
-            ;
+                ->name('search');
 
             Route::get('/posts/{post}', 'show')
                 ->where('post', Requirement::ASCII_SLUG) // Thank you Symfony :p
-                ->name('post')
-            ;
+                ->name('post');
 
             Route::post('comments/{post}/new', 'newComment')
                 ->can('create', Comment::class)
                 ->where('post', Requirement::ASCII_SLUG)
-                ->name('comment.new')
-            ;
+                ->name('comment.new');
         });
 
         Route::prefix('admin/posts')->name('admin.')->controller(AdminController::class)->middleware('can:admin')->group(function () {
@@ -68,7 +63,6 @@ Route::prefix('{_locale?}')
             Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
             Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
         });
-    })
-;
+    });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';

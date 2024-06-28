@@ -10,7 +10,9 @@ use Livewire\Component;
 class LanguageSelector extends Component
 {
     public array $languages;
+
     public string $selectedLanguage;
+
     public string $route;
 
     /**

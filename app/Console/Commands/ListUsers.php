@@ -51,15 +51,14 @@ class ListUsers extends Command
         /** @var int|null $maxResults */
         $maxResults = filter_var($this->argument('max-results'), \FILTER_VALIDATE_INT);
 
-        if (!$maxResults) {
+        if (! $maxResults) {
             $maxResults = 50;
         }
 
         $allUsers = User::query()
             ->orderBy('id', 'desc')
             ->limit($maxResults)
-            ->get()
-        ;
+            ->get();
 
         $createUserArray = static function (User $user): array {
             return [

@@ -26,7 +26,7 @@ class BlogController extends Controller
 
         // Every template name also has two extensions that specify the format and
         // engine for that template.
-        return view('blog.index_' . $_format, [
+        return view('blog.index_'.$_format, [
             'posts' => $latestPosts,
             'tagName' => $tag?->name,
         ]);

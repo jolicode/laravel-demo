@@ -21,8 +21,7 @@ class CommentCreatedMail extends Mailable
     public function __construct(
         public string $postTitle,
         public string $linkToPost
-    ) {
-    }
+    ) {}
 
     /**
      * Get the message envelope.

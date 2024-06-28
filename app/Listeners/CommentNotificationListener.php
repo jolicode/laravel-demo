@@ -13,9 +13,7 @@ class CommentNotificationListener
     /**
      * Create the event listener.
      */
-    public function __construct()
-    {
-    }
+    public function __construct() {}
 
     /**
      * Handle the event.

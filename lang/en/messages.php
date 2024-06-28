@@ -112,4 +112,3 @@ return [
         'post_list' => 'Post list',
     ],
 ];
-

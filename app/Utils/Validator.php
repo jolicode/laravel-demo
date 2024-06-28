@@ -32,13 +32,13 @@ final class Validator
             return 'The username can not be empty.';
         }
 
-        if (1 !== preg_match('/^[a-z_]+$/', $username)) {
+        if (preg_match('/^[a-z_]+$/', $username) !== 1) {
             return 'The username must contain only lowercase latin characters and underscores.';
         }
 
         $existingUser = User::where(['username' => $username])->first();
 
-        if (null !== $existingUser) {
+        if ($existingUser !== null) {
             return sprintf('There is already a user registered with the "%s" username.', $username);
         }
 
@@ -64,13 +64,13 @@ final class Validator
             return 'The email can not be empty.';
         }
 
-        if (null === u($email)->indexOf('@')) {
+        if (u($email)->indexOf('@') === null) {
             return 'The email should look like a real email.';
         }
 
         $existingEmail = User::where(['email' => $email])->first();
 
-        if (null !== $existingEmail) {
+        if ($existingEmail !== null) {
             return sprintf('There is already a user registered with the "%s" email.', $email);
         }
 
@@ -94,19 +94,19 @@ final class Validator
         $emailError = $this->validateEmail($email);
         $fullnameError = $this->validateFullName($fullName);
 
-        if (null !== $usernameError) {
+        if ($usernameError !== null) {
             throw new \InvalidArgumentException($usernameError);
         }
 
-        if (null !== $passwordError) {
+        if ($passwordError !== null) {
             throw new \InvalidArgumentException($passwordError);
         }
 
-        if (null !== $emailError) {
+        if ($emailError !== null) {
             throw new \InvalidArgumentException($emailError);
         }
 
-        if (null !== $fullnameError) {
+        if ($fullnameError !== null) {
             throw new \InvalidArgumentException($fullnameError);
         }
     }

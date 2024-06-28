@@ -18,7 +18,5 @@ class CommentCreatedEvent
     /**
      * Create a new event instance.
      */
-    public function __construct(public Comment $comment)
-    {
-    }
+    public function __construct(public Comment $comment) {}
 }

@@ -21,8 +21,7 @@ class UserListMail extends Mailable
      */
     public function __construct(
         public array $arrayUsers,
-    ) {
-    }
+    ) {}
 
     /**
      * Get the message envelope.

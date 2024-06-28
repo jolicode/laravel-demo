@@ -8,11 +8,9 @@ use App\Models\User;
 use App\Utils\Validator;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Hash;
-
-use function Laravel\Prompts\form;
-
 use Symfony\Component\Stopwatch\Stopwatch;
 
+use function Laravel\Prompts\form;
 use function Symfony\Component\String\u;
 
 class AddUser extends Command
@@ -69,10 +67,10 @@ class AddUser extends Command
      */
     public function handle(): int
     {
-        if (null === $this->argument('username')
-            || null === $this->argument('password')
-            || null === $this->argument('email')
-            || null === $this->argument('full-name')
+        if ($this->argument('username') === null
+            || $this->argument('password') === null
+            || $this->argument('email') === null
+            || $this->argument('full-name') === null
         ) {
             $this->info('Add User Command Interactive Wizard');
             $this->comment('
@@ -93,8 +91,8 @@ $ php bin/console app:add-user username password email@example.com'
 
         $this->newLine();
 
-        if (null !== $username) {
-            $this->line(' > <info>Username</info>: ' . $username);
+        if ($username !== null) {
+            $this->line(' > <info>Username</info>: '.$username);
         } else {
             $form->text(
                 label: 'Username',
@@ -109,8 +107,8 @@ $ php bin/console app:add-user username password email@example.com'
         $password = $this->argument('password');
         $this->newLine();
 
-        if (null !== $password) {
-            $this->line(' > <info>Password</info>: ' . u('*')->repeat(u($password)->length()));
+        if ($password !== null) {
+            $this->line(' > <info>Password</info>: '.u('*')->repeat(u($password)->length()));
         } else {
             $form->password(
                 label: 'Password (your type will be hidden)',
@@ -124,8 +122,8 @@ $ php bin/console app:add-user username password email@example.com'
         $email = $this->argument('email');
         $this->newLine();
 
-        if (null !== $email) {
-            $this->line(' > <info>Email</info>: ' . $email);
+        if ($email !== null) {
+            $this->line(' > <info>Email</info>: '.$email);
         } else {
             $form->text(
                 label: 'Email',
@@ -139,8 +137,8 @@ $ php bin/console app:add-user username password email@example.com'
         $fullName = $this->argument('full-name');
         $this->newLine();
 
-        if (null !== $fullName) {
-            $this->line(' > <info>Full Name</info>: ' . $fullName);
+        if ($fullName !== null) {
+            $this->line(' > <info>Full Name</info>: '.$fullName);
         } else {
             $form->text(
                 label: 'Full Name',

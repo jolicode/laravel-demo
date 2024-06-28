@@ -10,10 +10,9 @@ use Database\Factories\CommentFactory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Symfony\Component\String\UnicodeString;
 
 use function Symfony\Component\String\u;
-
-use Symfony\Component\String\UnicodeString;
 
 class PostSeeder extends Seeder
 {
