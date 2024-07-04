@@ -3,7 +3,7 @@
 Ce projet est une mini-refonte du projet Symfony Demo en Laravel.  
 Il m'a servi à me lancer dans Laravel, et à voir les différences entre les deux frameworks.  
 
-J'en ai d'ailleurs fait un [article sur le blog de Jolicode](https://jolicode.com/blog/retour-dexperience-dun-developpeur-symfony-qui-se-lance-sur-laravel) 😉
+J'en ai d'ailleurs fait un [article sur le blog de Jolicode](https://jolicode.com/blog/retour-dexperience-dun-developpeur-symfony-qui-decouvre-laravel) 😉
 
 ## Installation
 
