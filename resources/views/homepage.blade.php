@@ -1,8 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
         <h1 class="font-semibold text-xl text-gray-900 dark:text-white">{!! __('messages.title.homepage') !!}</h1>
-
-        <livewire:language-selector />
     </x-slot>
 
     <div class="flex mx-auto">

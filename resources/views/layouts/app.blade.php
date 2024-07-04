@@ -18,8 +18,8 @@
     @section('stylesheets')@endsection
     @section('javascripts')@endsection
 </head>
-<body class="font-sans antialiased flex flex-col min-h-screen" id="{{ $body_id ?? '' }}">
-    <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+<body class="font-sans antialiased" id="{{ $body_id ?? '' }}">
+    <div class="min-h-screen flex flex-col bg-gray-100 dark:bg-gray-900">
         @include('layouts.navigation', ['admin' => $admin ?? ''])
 
         <!-- Page Heading -->

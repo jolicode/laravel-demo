@@ -25,8 +25,8 @@
         </x-slot>
     @endisset
 
-{{--        This is really not needed, but just to show how to pass data to the layout--}}
+{{-- Ce bout de code n'est pas nécessaire. Je voulais juste montrer comment passer de la data au layout --}}
     <x-slot name="admin">
-        <p class="my-auto px-4 text-gray-900 dark:text-white">Hello {{ auth()->user()->name }}</p>
+        <p class="my-auto px-4 text-gray-900 dark:text-white">{{ auth()->user()->name }} 👋</p>
     </x-slot>
 </x-app-layout>
