@@ -36,6 +36,19 @@ php artisan serve
 npm run dev # pour compiler les assets
 ```
 
+### Se connecter
+
+Les utilisateurs de base doivent être créés via la commande `php artisan db:seed` pour pouvoir se connecter.  
+Il est possible d'en créer d'autres via la commande `php artisan app:add-user`.
+
+Les utilisateurs de base sont :
+
+| Username     | Password | Rôle   |
+|:-------------|:---------|:-------|
+| `jane_admin` | `kitten` | Admin  |
+| `tom_admin`  | `kitten` | Admin  |
+| `john_user`  | `kitten` | User   |
+
 ### Générer les helpers
 
 Grâce à [barryvdh/laravel-ide-helper](https://github.com/barryvdh/laravel-ide-helper), vous pouvez générer des fichiers d'aide pour votre IDE.
@@ -55,7 +68,7 @@ php artisan ide-helper:generate
 
 ### Mails
 
-Je ne me suis pas embêté à mettre en place un environnement de développement pour les mails personnellement.
+Je n'ai pas mis en place d'environnement de développement pour les mails de mon côté.
 Si vous voulez tester la fonctionnalité d'envoi de mails sans en mettre un en place non plus, vous pouvez aller voir les mails envoyés dans le fichier `storage/logs/laravel.log`.
 
 ### Traductions
@@ -63,12 +76,10 @@ Si vous voulez tester la fonctionnalité d'envoi de mails sans en mettre un en p
 Tous les strings ne sont pas traduit, ce n'est pas l'objectif.
 Mais vous pouvez voir comment ça fonctionne en allant voir :
 - le directory `lang/fr/`, 
-- les groups autour de mes routes dans `routes/web|auth.php`,
+- les groups autour de mes routes dans `routes/web.php` et `routes/auth.php`,
 - et mon middleware `App\Http\Middleware\SetLocale` (enregistré dans `bootstrap/app.php`).
 
 ## Notes
-
-Je n'ai pas fait de tests unitaires, ils utilisent PHPUnit et sont très similaires à ceux de Symfony.  
 
 J'ai essayé au mieux de suivre les bonnes pratiques Laravel, mais je suis sûr qu'il y a des choses à améliorer. Grand merci aux contributeurs de ce repo : https://github.com/alexeymezenin/laravel-best-practices pour la liste des bonnes pratiques.
 
